@@ -1,0 +1,643 @@
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+  background-color: #2B2B2B; 
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/*header*/
+.header {
+    width: 100%;
+    height: 60px;
+    background-color: #2DC275;
+
+    display: flex;          
+    align-items: center;   
+    padding-left: 30px;    
+}
+
+.logo img.ticket-box {
+    height: 40px;   
+    width: auto;    
+    padding-left:40px;
+}
+.search{
+    padding-left: 100px;
+
+}
+.search .search-text{
+    height: 45px;
+    width: 400px;
+    border-radius: 12px;
+    font-size: 16px;      
+    padding-left: 15px;   
+    outline: none;  
+    line-height: 40px; 
+    height: 40px;
+}
+
+.search .search-button{
+    height:35px;
+    width:100px;
+    border-radius: 9px;
+}
+.search .search-button:hover{
+    background-color: #999999;
+}
+/* --- Vé của tôi --- */
+.my-ticket a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 40px;
+  transition: color 0.3s ease;
+}
+
+.my-ticket a:hover {
+  color: purple;
+}
+
+/* --- Tránh xung đột --- */
+.header .my-ticket a {
+  color: #fff !important;
+}
+
+.account{
+    padding-left: 100px;
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.account .login, .account .erroll{
+  color:white;
+  text-decoration: none;
+}
+.account .login:hover{
+    color:purple;
+    cursor: pointer;
+}
+.account .erroll:hover{
+    color:purple;
+    cursor: pointer;
+}
+/*menu*/
+.main-menu{
+    height:60px;
+    width:100%;
+    background-color: black;
+}
+.main-menu .menu-list{
+    color:white;
+    font-size:20px;
+}
+.menu-list > li{
+display: inline-block;
+    padding-left: 90px;
+    padding-top: 20px;
+    align-items: center;
+}
+.menu-list > li:hover{
+    color:green;
+    cursor: pointer;
+}
+/*main-content*/
+.main-content {
+  background-color: #2B2B2B;
+  padding: 40px 0;                 
+  display: flex;
+  flex-direction: column;   /* xếp dọc slider + nội dung khác */
+  justify-content: flex-start;
+  align-items: center;      /* vẫn căn giữa ngang */
+}
+
+/* biến dễ chỉnh */
+:root {
+  --slides: 4;         /* số ảnh trong slider -> chỉnh nếu bạn thêm ảnh */
+  --duration: 8s;      /* tổng thời gian 1 vòng */
+}
+
+/* slider responsive, to ra vừa với trang */
+.slider {
+  width: 80%;                 /* chiếm 80% chiều ngang khung chính */
+  max-width: 1100px;          /* tối đa không vượt quá 1100px */
+  aspect-ratio: 16 / 7;       /* giữ tỉ lệ, trình duyệt hiện đại */
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  position:relative;
+}
+
+/* khối chứa tất cả ảnh — rộng bằng số ảnh * 100% */
+.slides {
+  display: flex;
+  width: 400%; /* 4 ảnh => 4 * 100% */
+  transition: transform 0.5s ease;
+}
+
+/* mỗi ảnh chiếm 1 phần trong `.slides` */
+.slides img {
+  width: 25%;      
+  height: 100%;
+  object-fit: cover; 
+  flex-shrink: 0;    
+  display: block; 
+}
+/* nút */
+.slide-btn {
+  position: absolute;
+  top: 50%;                      
+  transform: translateY(-50%);
+  width: 45px;                  
+  height: 45px;                
+  border-radius: 50%;           
+  background: black; 
+  color: #fff;
+  border: none;
+  font-size: 22px;              
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* ✅ Hiệu ứng hover: sáng hơn và hơi phóng to */
+.slide-btn:hover {
+  background: rgba(255, 0, 0, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+  left: 20px; /* cách mép trái một chút */
+}
+
+.next {
+  right: 20px; /* cách mép phải một chút */
+}
+.main-content h2 .ti-star{
+    color:yellow
+}
+.main-content h2 .ti-headphone-alt{
+    color:aqua;
+}
+.main-content h2 .ti-cup{
+    color:gold
+}
+.main-content h2 .ti-palette{
+    color: pink;
+}
+/* Slider sự kiện xu hướng */
+/* Container slider */
+.trend-container {
+  position: relative;
+  width: 88%;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+/* Danh sách sự kiện */
+.event-list {
+  display: flex;
+  gap: 40px; 
+  transition: transform 0.5s ease;
+  padding-left: 60px; 
+}
+
+/* Card sự kiện */
+.event-card {
+  min-width: 22%; /* ✅ rộng hơn để hiển thị 4 card mỗi lần */
+  max-width: 22%;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #222;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: visible; /* ✅ Cho phép số tràn ra ngoài */
+}
+
+.event-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Số thứ tự */
+.event-card .number {
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 120px;
+  font-weight: 900;
+  color: #2DC275;
+  opacity: 0.95;
+  z-index: 5;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+
+
+
+/* Nút điều hướng */
+.trend-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.trend-btn:hover {
+  background: #2DC275;
+}
+
+.trend-btn.prev {
+  left: -20px;
+}
+
+.trend-btn.next {
+  right: -20px;
+}
+/* Phần nội dung linh hoạt nhưng vẫn giữ layout đẹp */
+.event4you .event-text {
+    flex: 1;               
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*  Giới hạn chiều cao tiêu đề - không làm lệch thẻ */
+.event4you .event-text h4 {
+    height: 48px; /* khoảng 2 dòng */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.event4you .event:hover {
+    transform: scale(1.05);
+}
+
+.event4you .event-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.event4you .event-text {
+    padding: 12px;
+    background-color: white;
+    color: black;
+    text-align: left;
+}
+
+.event-text .cost{
+    color:green;
+    padding-top:3px;
+}
+
+.event-text .date{
+    padding-top:3px;
+}
+.add-ticket {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.add-ticket:hover {
+  background: #0056b3;
+}
+/*  */
+.places{
+    padding-top:20px;
+}
+.places .city{
+    width: 300px;
+    height: 295px;
+    border-radius: 20px;
+}
+.place {
+  position: relative;
+  display: inline-block;
+  margin-left:25px;
+}
+.city-name {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 12px;
+  border-radius: 8px;
+
+  white-space: nowrap;   
+  max-width: 90%;        
+  text-align: center;   
+  overflow: hidden;      
+  text-overflow: ellipsis; 
+}
+.qcao{
+    width:80%;
+}
+.place:hover{
+    transform: scale(1.05);
+}
+/* Footer */
+/* ===== Footer ===== */
+.footer {
+  background: linear-gradient(to right, #1a1a1a, #000);  /* nền tối có chiều sâu */
+  color: #ccc;
+  padding: 60px 100px;
+  font-size: 16px;
+  border-top: 4px solid #2DC275;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 100px; 
+}
+
+
+.footer-column {
+  flex: 1;
+  min-width: 280px;
+}
+
+.footer-column h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-left: 4px solid #2DC275;
+  padding-left: 10px;
+  padding-top:5px;
+}
+
+.footer-column p {
+  margin-bottom:10px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-column p:hover {
+  color: #2DC275;           /* hover đổi sang xanh */
+  transform: translateX(4px);
+}
+
+.footer .highlight {
+  color: #2DC275;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  border-top: 1px solid #333;
+  margin-top: 40px;
+  padding-top: 20px;
+}
+/* popup tìm kiếm */
+/* Nền phủ mờ */
+/* Popup overlay */
+#search-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Popup box */
+.popup-box {
+  width: 80%;
+  max-height: 80vh;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Header */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.popup-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: red;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Grid layout */
+.popup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+/* Each card */
+.popup-grid .event {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.popup-grid .event:hover {
+  transform: translateY(-5px);
+}
+
+.popup-grid img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.popup-grid .event-text {
+  padding: 12px;
+}
+
+.popup-grid .add-ticket {
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  background: #007bff;
+  color: white;
+  padding: 7px 0;
+  border-radius: 5px;
+}
+/* ----- Chỉnh lại tiêu đề cho các section (canh theo container) ----- */
+.main-content h2 {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 30px;
+    margin: 0 auto 18px;      /* canh giữa theo container */
+    width: 88%;               /* cùng chiều ngang với .event4you */
+    max-width: 1400px;
+    text-align: left;
+}
+
+/* ----- Lưới sự kiện: áp dụng cho tất cả .event4you ----- */
+.event4you {
+    width: 88%;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;                /* khoảng cách giữa các thẻ */
+    align-items: flex-start;
+}
+
+/* Tính toán chính xác để 4 thẻ luôn vừa 1 hàng
+   (100% trừ 3 gaps chia cho 4) */
+.event4you .event {
+    width: calc((100% - (3 * 20px)) / 4);
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.18s ease;
+    display: flex;
+    flex-direction: column;   /* giữ nút ở dưới */
+}
+
+
+/* Nội dung bên trong card */
+.event4you .event-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+.event4you .event-text {
+    padding: 12px;
+    background: white;
+    color: black;
+    text-align: left;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Nút luôn ở đáy */
+.add-ticket {
+    margin-top: 12px;
+    align-self: flex-start;   /* nếu muốn nút căn trái */
+}
+
+/* Hover */
+.event4you .event:hover {
+    transform: translateY(-6px);
+}
+
+/* ----- Responsive (mobile/tablet) ----- */
+@media (max-width: 1100px) {
+    .event4you .event {
+        width: calc((100% - (2 * 20px)) / 3); /* 3 cột */
+    }
+}
+@media (max-width: 800px) {
+    .event4you .event {
+        width: calc((100% - 1 * 20px) / 2);   /* 2 cột */
+    }
+}
+@media (max-width: 480px) {
+    .event4you .event {
+        width: 100%;                           /* 1 cột */
+    }
+    .main-content h2 { width: 95%; }
+}
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    gap: 20px;
+}
+
+.slider-container .event {
+    flex: 0 0 calc(25% - 20px); /* Hiển thị đúng 4 event */
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.8);
+    border: none;
+    font-size: 24px;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.slider-btn.prev { left: 0; }
+.slider-btn.next { right: 0; }
+
+.slider-btn:hover {
+    background: #ddd;
+}
